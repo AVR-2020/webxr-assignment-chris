@@ -48,11 +48,16 @@
             if(this.data.mouseover){ // Check the mouseover state
               let elOcta = document.querySelector('#Blackhole');
               let rot = elOcta.getAttribute('rotation');
-              elOcta.setAttribute('rotation',{x: rot.x, y: rot.y + 1, z: rot.z });
+              elOcta.setAttribute('rotation',{x: rot.x, y: rot.y + 1, z: rot.z});
+
+              let elOcta1 = document.querySelector('#Asteroid');
+              let rot1 = elOcta1.getAttribute('rotation');
+              elOcta1.setAttribute('rotation',{x: rot.x, y: rot.y + 1, z: rot.z +1});
             }
           }      
         });
       </script>
+        
 
       <!-- Moving script -->
     <script>
@@ -80,6 +85,7 @@
 
         <a-asset-item id="building" src="/aframe/chris/assets/scene1.glb"></a-asset-item>
         <a-asset-item id="black" src="/aframe/chris/assets/blackhole1.glb"></a-asset-item>
+        <a-asset-item id="aster" src="/aframe/chris/assets/asteroid.glb"></a-asset-item>
                 
       </a-assets>
             
@@ -96,27 +102,52 @@
       <a-sky color="black"></a-sky>
       <a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
 
+      <!-- First Showcase-->
       <a-entity gltf-model="#building" position="0 0 0" scale="8 8 8"></a-entity>
 
       <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
       <a-entity  id="redBall" 
       class="clickable" geometry="primitive: sphere; radius: 0.11" position="1.2 -0.5 0.3" material="color: orange" over-listener
     ></a-entity> 
-      <a-entity id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>></a-entity>
+      <a-entity id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
+    </a-entity>
       <a-circle
+      camera look-controls
       checkpoint
       color="#FF0000" 
       position="1.4 0.3 1.8" 
       rotation="0 -90 0"
-      scale="0.25 0.25 0.25"></a-circle>
+      scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
+      camera look-controls
       checkpoint
       color="#FF0000" 
       position="1.4 0.3 -1" 
       rotation="0 -90 0"
-      scale="0.25 0.25 0.25"></a-circle>
+      scale="0.1 0.1 0.1"></a-circle>
 
+
+      <!-- Second Showcase -->
+      <a-entity  id="blueBall" 
+      class="clickable" geometry="primitive: sphere; radius: 0.11" position="-1 -0.5 0.3" material="color: orange" over-listener
+    ></a-entity> 
+      <a-entity id = "Asteroid" class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#aster" position="-1 0.25 0.3" scale="0.1 0.1 0.1" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
+      <a-circle
+      camera look-controls
+      checkpoint
+      color="#FF0000" 
+      position="-1 0.3 1.8" 
+      rotation="0 -90 0"
+      scale="0.1 0.1 0.1"></a-circle>
+
+      <a-circle
+      camera look-controls
+      checkpoint
+      color="#FF0000" 
+      position="-1 0.3 -1" 
+      rotation="0 -180 0"
+      scale="0.1 0.1 0.1"></a-circle>
     </a-scene>
   
   </body>
