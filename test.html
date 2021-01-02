@@ -1,0 +1,124 @@
+<html>
+  <head>
+    
+    <title>Museum</title>
+    <meta name="description" content="study about">
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <!-- 
+        <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script> 
+    -->
+    <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
+    <!-- 
+        <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
+    -->
+    
+    <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/@editvr/aframe-dialog-popup-component@1.7.2/dist/aframe-dialog-popup-component.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+
+  <body>
+      <!-- rotation script -->
+    <script>
+        AFRAME.registerComponent('over-listener', {
+          schema:{
+            mouseover:{type: 'boolean', default: false}
+          },
+          init: function () {
+           
+            var el = this.el;  // reference to the entity that contains this component    
+            var data = this.data;  // reference to the properties of this component.    
+            // Listen for mouseenter event
+            this.el.addEventListener('mouseenter', function (evt) { 
+              // You can't change the property directly. You must use setAttribute.
+              el.setAttribute('over-listener','mouseover', true); // this.el fail, due to scope of the function. Must use this reference.
+              // Change the color of the button to indicate rollover state is on.
+               el.setAttribute('material','color','#55ee00');;
+            });    
+            // Listen for mouseleave event
+            this.el.addEventListener('mouseleave', function (evt) {              
+              el.setAttribute('over-listener','mouseover', false);   
+               el.setAttribute('material','color','orange');
+            });    
+          },
+          tick: function(){ // called every frame       
+            if(this.data.mouseover){ // Check the mouseover state
+              let elOcta = document.querySelector('#Blackhole');
+              let rot = elOcta.getAttribute('rotation');
+              elOcta.setAttribute('rotation',{x: rot.x, y: rot.y + 1, z: rot.z });
+            }
+          }      
+        });
+      </script>
+
+      <!-- Moving script -->
+    <script>
+        AFRAME.registerComponent("navlog",{
+            init:function() {
+                this.el.addEventListener('navigation-start', function(){
+                    console.log("%cSTART", "font-size:2em;color:green");
+                });
+                this.el.addEventListener('navigation-end', function(){
+                    console.log("%cEND", "font-size:2em;color:red");
+                });
+            }
+        });
+    </script>
+
+    <a-scene physics="debug: true">
+
+      <a-mixin id="rotation" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
+
+      <a-mixin id="orbit" animation="property: rotation; loop: true; to: 0 360 0; dur: 40000; easing: linear;"></a-mixin>
+
+      
+
+      <a-assets>
+
+        <a-asset-item id="building" src="/aframe/chris/assets/scene1.glb"></a-asset-item>
+        <a-asset-item id="black" src="/aframe/chris/assets/blackhole1.glb"></a-asset-item>
+                
+      </a-assets>
+            
+      <a-entity navlog movement-controls="controls: checkpoint" checkpoint-controls="mode: animate;animateSpeed:5">
+        <a-camera position="0 -0.25 0">
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-entity>
+      
+      <a-entity id="dialog" dialog-popup="title: My Title; body: My Body" position="0 1 -10" titleColor="yellow"></a-entity>
+      
+
+      <a-entity id="basic-light" light="type: ambient; color: #BBB"></a-entity>
+      <a-sky color="black"></a-sky>
+      <a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
+
+      <a-entity gltf-model="#building" position="0 0 0" scale="8 8 8"></a-entity>
+
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
+      <a-entity  id="redBall" 
+      class="clickable" geometry="primitive: sphere; radius: 0.11" position="1.2 -0.5 0.3" material="color: orange" over-listener
+    ></a-entity> 
+      <a-entity id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>></a-entity>
+      <a-circle
+      checkpoint
+      color="#FF0000" 
+      position="1.4 0.3 1.8" 
+      rotation="0 -90 0"
+      scale="0.25 0.25 0.25"></a-circle>
+
+      <a-circle
+      checkpoint
+      color="#FF0000" 
+      position="1.4 0.3 -1" 
+      rotation="0 -90 0"
+      scale="0.25 0.25 0.25"></a-circle>
+
+    </a-scene>
+  
+  </body>
+
+</html>
