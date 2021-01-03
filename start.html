@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <!-- 
+        <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script> 
+    -->
+    <script src="https://unpkg.com/aframe-star-system-component@1.0.0/index.js"></script>
+    <!-- 
+        <script src="https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js"></script>
+    -->
+    
+    <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/@editvr/aframe-dialog-popup-component@1.7.2/dist/aframe-dialog-popup-component.min.js"></script>
+    <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    <!-- Starting VR -->
+    <a-scene physics="debug: true">
+        <a-assets>
+
+            <a-asset-item id="start" src="assets/scene.gltf"></a-asset-item>
+            <img id="tesuto" src="assets/textures/test.png">
+                    
+          </a-assets>
+          <a-entity gltf-model="#start" rotation="0 270 0">
+
+            
+      <!-- Moving script -->
+    <script>
+        AFRAME.registerComponent("navlog",{
+            init:function() {
+                this.el.addEventListener('navigation-start', function(){
+                    console.log("%cSTART", "font-size:2em;color:green");
+                });
+                this.el.addEventListener('navigation-end', function(){
+                    console.log("%cEND", "font-size:2em;color:red");
+                });
+            }
+        });
+    </script>
+
+          </a-entity>
+          <a-text value="Welcome" position="0 1.9 0" color="white" side="double" scale="1.5 1.5 1.5" ></a-text>
+            <a-text value="Click red circle for teleport" position="0 1.5 0.5" color="white" side="double" scale="0.5 0.5 0.5" ></a-text>
+            <a-text value="Click the sphere below 
+            showcase to special move 
+            and bgm showcase" position="0 1.25 0.5" color="white" side="double" scale="0.5 0.5 0.5" ></a-text>
+            <a-text value="Click the sphere in the 
+            blackboard for magic trick" position="0 0.95 0.5" color="white" side="double" scale="0.5 0.5 0.5" ></a-text>
+
+            <a-text value="Don't forget to click the image you see here" position="0 0.65 0.5" color="white" side="double" scale="0.35 0.35 0.35" ></a-text>
+
+            <a-circle
+   
+            sound="src:assets/sound/footstep.wav;on: click;volume: 3"
+              class="clickable"
+              checkpoint
+              color="#FF0000" 
+              position="0.25 0.25 1" 
+              rotation="-90 0 0"
+              scale="0.25 0.25 0.25"></a-circle>
+        
+          <a-entity  navlog movement-controls="controls: checkpoint" checkpoint-controls="mode: animate;animateSpeed:5">
+            <a-camera position="0 1 2.5">
+               
+                <a-cursor id="mouseCursor1" raycaster="objects: .clickable" cursor laser-controls="hand: right" line="color: red; opacity: 0.75"></a-cursor>
+            </a-camera>
+        </a-entity>
+        <a-entity sound="src:assets/sound/bgm.mp3;loop: true;autoplay: true;volume: 0.25;refDistance:0.25" position="0 0.5 0">
+
+        </a-entity>
+        <a-curvedimage checkpoint class="clickable" id="warp-gate" src="#tesuto" height="3.0" radius="6" theta-length="72"
+        rotation="0 145 0" scale="0.8 0.8 0.8" position="0 1.2 3.9" click></a-curvedimage>
+        <script>
+            document
+              .querySelector("#warp-gate")
+              .addEventListener("click", e => {
+                setTimeout(5)
+                location.href = "test.html";
+              });
+            </script>
+
+
+        
+    </a-scene>
+</body>
+</html>
