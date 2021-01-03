@@ -88,34 +88,38 @@
       
       <a-assets>
 
-        <a-asset-item id="building" src="/aframe/chris/assets/scene1.glb"></a-asset-item>
-        <a-asset-item id="black" src="/aframe/chris/assets/blackhole1.glb"></a-asset-item>
-        <a-asset-item id="aster" src="/aframe/chris/assets/asteroid.glb"></a-asset-item>
-        <a-asset-item id="board" src="/aframe/chris/assets/Blackboard.glb"></a-asset-item>
+        <a-asset-item id="building" src="assets/scene1.glb"></a-asset-item>
+        <a-asset-item id="black" src="assets/blackhole1.glb"></a-asset-item>
+        <a-asset-item id="aster" src="assets/asteroid.glb"></a-asset-item>
+        <a-asset-item id="board" src="assets/Blackboard.glb"></a-asset-item>
+        <!--<a-asset-item id="mp3" src="/aframe/chris/assets/mp3.glb"></a-asset-item> -->
+
+        <!--<audio id="BGM" src="aframe/chris/assets/sound/bgm.mp3" preload="auto"></audio>
+        -->
                 
       </a-assets>
-            
-      <a-entity navlog movement-controls="controls: checkpoint" checkpoint-controls="mode: animate;animateSpeed:5">
+      <a-entity sound="src:assets/sound/bgm.mp3;loop: true;autoplay: true;volume: 0.5;refDistance:2" id="mp3player"></a-entity>
+      <a-entity  navlog movement-controls="controls: checkpoint" checkpoint-controls="mode: animate;animateSpeed:5">
         <a-camera position="0 -0.25 0">
             <a-cursor id="mouseCursor1" raycaster="objects: .clickable" cursor laser-controls="hand: right" line="color: red; opacity: 0.75"></a-cursor>
         </a-camera>
     </a-entity>
       
-      <a-entity id="dialog" dialog-popup="title: My Title; body: My Body" position="0 1 -10" titleColor="yellow"></a-entity>
+      
       
 
-      <a-entity id="basic-light" light="type: ambient; color: #BBB"></a-entity>
-      <a-sky color="black"></a-sky>
-      <a-entity star-system="count: 1000; radius: 250; depth: 0"></a-entity>
+      <a-entity  id="basic-light" light="type: ambient; color: #BBB"></a-entity>
+      <a-sky  color="black"></a-sky>
+      <a-entity  star-system="count: 1000; radius: 250; depth: 0"></a-entity>
 
       <!-- First Showcase-->
       <a-entity gltf-model="#building" position="0 0 0" scale="8 8 8"></a-entity>
 
       <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
-      <a-entity  id="redBall" 
+      <a-entity  id="redBall" sound="src:assets/sound/blackhole.wav;on: click;volume: 3"  
       class="clickable" geometry="primitive: sphere; radius: 0.11" position="1.2 -0.5 0.3" material="color: orange" over-listener
-    ></a-entity> 
-      <a-entity id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
+    ></a-entity>
+      <a-entity sound="src:assets/sound/footstep.wav;on: click;volume: 3" id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
     </a-entity>
     <a-entity id = "Board1" class="not-clickable"   gltf-model="#board" position="1.4 -0.45 -0.4" scale="0.25 0.25 0.25" >
       <a-text
@@ -145,6 +149,7 @@
                     
                 ></a-text>
                 <a-entity
+                sound="src:assets/sound/flip.wav;on: click;volume: 3"
                 id="pertanyaanjudulText"
                 class="clickable" geometry="primitive: sphere; radius: 0.11"
                 position="-0.15 2 -0"
@@ -207,6 +212,8 @@ scale="0.7 0.7 0.7"
   </a-entity>
     
     <a-circle
+   
+    sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       class="clickable"
       checkpoint
       color="#FF0000" 
@@ -215,6 +222,7 @@ scale="0.7 0.7 0.7"
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
+      sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       class="clickable"
       checkpoint
       color="#FF0000" 
@@ -223,6 +231,7 @@ scale="0.7 0.7 0.7"
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
+      sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       class="clickable"
       checkpoint
       color="#FF0000" 
@@ -233,11 +242,13 @@ scale="0.7 0.7 0.7"
 
       <!-- Second Showcase -->
       <a-entity  id="blueBall" 
+      sound="src:assets/sound/asteroid.wav;on: click;volume: 1"
       class="clickable" geometry="primitive: sphere; radius: 0.11" position="-1 -0.5 0.3" material="color: orange" over-listener
     ></a-entity> 
-      <a-entity id = "Asteroid" class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#aster" position="-1 0.25 0.3" scale="0.1 0.1 0.1" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
+      <a-entity sound="src:assets/sound/footstep.wav;on: click;volume: 3" id = "Asteroid" class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#aster" position="-1 0.25 0.3" scale="0.1 0.1 0.1" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
       
       <a-circle
+      sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       class="clickable"
       checkpoint
       color="#FF0000" 
@@ -246,6 +257,7 @@ scale="0.7 0.7 0.7"
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
+      sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       class="clickable"
       checkpoint
       color="#FF0000" 
@@ -254,6 +266,7 @@ scale="0.7 0.7 0.7"
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
+      sound="src:assets/sound/footstep.wav;on: click;volume: 3"
       checkpoint
       class="clickable"
       color="#FF0000" 
@@ -261,7 +274,7 @@ scale="0.7 0.7 0.7"
       rotation="0 90 0"
       scale="0.1 0.1 0.1"></a-circle>
 
-      <a-entity id = "Board1" class="not-sclickable"   gltf-model="#board" position="-1.2 -0.45 -0.6" scale="0.25 0.25 0.25" rotation="0 180 0" >
+      <a-entity id = "Board1" class="not-clickable"   gltf-model="#board" position="-1.2 -0.45 -0.6" scale="0.25 0.25 0.25" rotation="0 180 0" >
         <a-text
                       id="informasiblackholeText"
                       align="left"
@@ -287,6 +300,7 @@ scale="0.7 0.7 0.7"
                       
                   ></a-text>
                   <a-entity
+                  sound="src:assets/sound/flip.wav;on: click;volume: 3"
                   id="pertanyaanjudulText1"
                   class="clickable" geometry="primitive: sphere; radius: 0.11"
                   position="-0.15 2 -0"
