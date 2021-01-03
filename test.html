@@ -18,9 +18,11 @@
     <script src="https://unpkg.com/@editvr/aframe-dialog-popup-component@1.7.2/dist/aframe-dialog-popup-component.min.js"></script>
     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
 </head>
 
   <body>
+    
       <!-- rotation script -->
     <script>
         AFRAME.registerComponent('over-listener', {
@@ -86,6 +88,7 @@
         <a-asset-item id="building" src="/aframe/chris/assets/scene1.glb"></a-asset-item>
         <a-asset-item id="black" src="/aframe/chris/assets/blackhole1.glb"></a-asset-item>
         <a-asset-item id="aster" src="/aframe/chris/assets/asteroid.glb"></a-asset-item>
+        <a-asset-item id="board" src="/aframe/chris/assets/Blackboard.glb"></a-asset-item>
                 
       </a-assets>
             
@@ -111,8 +114,104 @@
     ></a-entity> 
       <a-entity id = "Blackhole"class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#black" position="1.2 0.25 0.3" scale="0.01 0.01 0.01" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
     </a-entity>
+    <a-entity id = "Board1" class="clickable"   gltf-model="#board" position="1.4 -0.45 -0.4" scale="0.25 0.25 0.25" >
+      <a-text
+                    id="informasiblackholeText"
+                    align="left"
+                    value="Blackhole
+                    
+                    A large, massive star that has run out of fuel and collapsed in on itself. The remnant core or sphere
+                    is so densely packed that light and other objects cannot escape its gravitational pull."
+                    position="-0.25 1.6 -2"
+                    rotation="0 -90 0"
+                    scale="0.7 0.7 0.7"
+                ></a-text>
+
+    </a-entity>>
+    <!-- Script question for blackhole-->
+    <script src="js/Question.js">
+    </script>
+    <a-entity id = "Board2" class="clickable"   gltf-model="#board" position="1.4 -0.45 1.3" scale="0.25 0.25 0.25" Question1 >
+      <a-text
+                    id="pertanyaanjudulText1"
+                    align="center"
+                    value="Question"
+                    position="-0.25 2 -0.5"
+                    rotation="0 -90 0"
+                    scale="0.7 0.7 0.7"
+                    
+                ></a-text>
+                <a-entity
+                id="pertanyaanjudulText"
+                class="clickable" geometry="primitive: sphere; radius: 0.11"
+                position="-0.25 2 -0"
+                rotation="0 -90 0"
+                scale="0.7 0.7 0.7"
+                color="white"
+                over-list
+            ></a-entity>
+
+                <a-text
+                id="pertanyaanText"
+                align="left"
+                value="Question"
+                position="-0.25 1.75 -2"
+                rotation="0 -90 0"
+                scale="0.7 0.7 0.7"
+            ></a-text>
+
+            <a-text
+            class="clickable"
+            id="answer1Text"
+            align="left"
+            value="Choice 1"
+            position="-0.25 1.5 -2"
+            rotation="0 -90 0"
+            scale="0.7 0.7 0.7"
+        ></a-text>
+
+        <a-text
+        class="clickable"
+        id="answer2Text"
+        align="left"
+        value="Choice 2"
+        position="-0.25 1.25 -2"
+        rotation="0 -90 0"
+        scale="0.7 0.7 0.7"
+    ></a-text>
+
+    <a-text
+    class="clickable"
+    id="answer3Text"
+    align="left"
+    value="Choice 3"
+    position="-0.25 1 -2"
+    rotation="0 -90 0"
+    scale="0.7 0.7 0.7"
+></a-text>
+
+<a-text
+class="clickable"
+id="answer4Text"
+align="left"
+value="Choice 4"
+position="-0.25 0.75 -2"
+rotation="0 -90 0"
+scale="0.7 0.7 0.7"
+></a-text>
+
+    </a-entity>>
+  </a-entity>
+    
+    <a-circle
+      checkpoint
+      color="#FF0000" 
+      position="0 -0.3 -1" 
+      rotation="-90 0 0"
+      scale="0.1 0.1 0.1"></a-circle>
+
       <a-circle
-      camera look-controls
+      
       checkpoint
       color="#FF0000" 
       position="1.4 0.3 1.8" 
@@ -120,7 +219,7 @@
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
-      camera look-controls
+      
       checkpoint
       color="#FF0000" 
       position="1.4 0.3 -1" 
@@ -133,20 +232,26 @@
       class="clickable" geometry="primitive: sphere; radius: 0.11" position="-1 -0.5 0.3" material="color: orange" over-listener
     ></a-entity> 
       <a-entity id = "Asteroid" class="clickable"  animation__scalewave="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: scalewave; dur: 500; dir: alternate; loop: 4" checkpoint gltf-model="#aster" position="-1 0.25 0.3" scale="0.1 0.1 0.1" animation='from: 0 90 0; to: 0 0 0'></a-entity>>
+      
       <a-circle
-      camera look-controls
       checkpoint
       color="#FF0000" 
-      position="-1 0.3 1.8" 
-      rotation="0 -90 0"
+      position="0 -0.3 1.8" 
+      rotation="-90 0 0"
       scale="0.1 0.1 0.1"></a-circle>
 
       <a-circle
-      camera look-controls
       checkpoint
       color="#FF0000" 
-      position="-1 0.3 -1" 
-      rotation="0 -180 0"
+      position="-1.22 0.3 1.8" 
+      rotation="0 90 0"
+      scale="0.1 0.1 0.1"></a-circle>
+
+      <a-circle
+      checkpoint
+      color="#FF0000" 
+      position="-1.22 0.3 -1" 
+      rotation="0 90 0"
       scale="0.1 0.1 0.1"></a-circle>
     </a-scene>
   
